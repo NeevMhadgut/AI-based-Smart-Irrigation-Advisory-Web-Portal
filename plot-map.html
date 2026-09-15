@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Plot Map - Smart Irrigation System</title>
+</head>
+<body>
+    <header>
+        <h1>Farm Plot Navigation</h1>
+        <p>Smart Irrigation using AI & Sensor Technology</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="farm-info.html">Farm Information</a></li>
+                <li><a href="plot-map.html">Plot Map</a></li>
+                <li><a href="advisory.html">Irrigation Advisory</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Interactive Farm Layout</h2>
+        <p>Click on a specific plot on the map below to view its real-time irrigation status, soil moisture details, and crop stage.</p>
+        <img src="images/farm-layout.jpg" alt="Aerial view map of the farm showing Plots A, B, and C" usemap="#farmmap" width="600" height="400">
+        <map name="farmmap">
+            <area shape="rect" coords="0,0,200,400" href="plot-a.html" alt="Plot A Details" title="Go to Plot A Dashboard">
+            <area shape="rect" coords="200,0,400,400" href="plot-b.html" alt="Plot B Details" title="Go to Plot B Dashboard">
+            <area shape="rect" coords="400,0,600,400" href="plot-c.html" alt="Plot C Details" title="Go to Plot C Dashboard">
+        </map>
+    </main>
+    <hr>
+    <footer>
+        <p>&copy; 2026 AI-based Smart Irrigation Advisory System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
