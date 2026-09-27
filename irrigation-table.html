@@ -3,73 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Irrigation Table - Smart Irrigation System</title>
+    <title>Equipment Price List - Smart Irrigation System</title>
+    
+    <!-- Linking the external table.css file -->
+    <link rel="stylesheet" href="table.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #1b5e20;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Soil Moisture & Irrigation Data</h1>
-        <p>Smart Irrigation using AI & Sensor Technology</p>
+
+    <header style="text-align: center; margin-bottom: 20px;">
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="dashboard.html">Farm Dashboard</a></li>
-                <li><a href="plot-map.html">Plot Map</a></li>
-                <li><a href="irrigation-table.html">Irrigation Table</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+            <a href="index.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Home</a>
+            <a href="gallery.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Gallery</a>
+            <a href="book.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Training</a>
         </nav>
     </header>
-    <main>
-        <h2>Multi-Plot Irrigation Advisory</h2>
-        <table border="1" cellpadding="10" cellspacing="0">
-            <caption>Daily Irrigation Recommendations and Sensor Data</caption>
-            <thead>
-                <tr>
-                    <th>Plot ID</th>
-                    <th>Farmer Name</th>
-                    <th>Soil Moisture (%)</th>
-                    <th>Weather</th>
-                    <th>Irrigation Recommendation</th>
-                    <th>Water Requirement</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>PLT-01</td>
-                    <td>Ramesh Patil</td>
-                    <td>28%</td>
-                    <td rowspan="2">Clear & Sunny</td>
-                    <td>Turn On (45 mins)</td>
-                    <td>1500 Liters</td>
-                </tr>
-                <tr>
-                    <td>PLT-02</td>
-                    <td>Suresh Kumar</td>
-                    <td>31%</td>
-                    <td>Turn On (30 mins)</td>
-                    <td>1000 Liters</td>
-                </tr>
-                <tr>
-                    <td>PLT-03</td>
-                    <td>Anita Desai</td>
-                    <td>68%</td>
-                    <td>Heavy Rain</td>
-                    <td>Skip Irrigation</td>
-                    <td>0 Liters</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="5" align="right">Total Estimated Daily Water Requirement:</th>
-                    <th>2500 Liters</th>
-                </tr>
-            </tfoot>
-        </table>
-    </main>
-    <hr>
-    <footer>
-        <p>&copy; 2026 AI-based Smart Irrigation Advisory System. All rights reserved.</p>
-    </footer>
+
+    <h2>Smart Irrigation Equipment Price List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Equipment Name</th>
+                <th>Category</th>
+                <th>Price (INR)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>EQ-001</td>
+                <td>Smart Moisture Sensor</td>
+                <td>Sensors</td>
+                <td>₹4500</td>
+            </tr>
+            <tr>
+                <td>EQ-002</td>
+                <td>Drip Irrigation Emitter</td>
+                <td>Piping</td>
+                <td>₹250</td>
+            </tr>
+            <tr>
+                <td>EQ-003</td>
+                <td>Automated Water Valve</td>
+                <td>Controllers</td>
+                <td>₹12000</td>
+            </tr>
+            <tr>
+                <td>EQ-004</td>
+                <td>AI Weather Station</td>
+                <td>Monitoring</td>
+                <td>₹35000</td>
+            </tr>
+            <tr>
+                <td>EQ-005</td>
+                <td>Mainline PVC Pipe (10m)</td>
+                <td>Piping</td>
+                <td>₹1500</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

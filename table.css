@@ -1,0 +1,30 @@
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 12px 15px;
+    text-align: center; /* Center aligns text as required */
+}
+
+/* Header Background Color */
+th {
+    background-color: #2e7d32;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Zebra-striping rows using pseudo-class */
+tr:nth-child(even) {
+    background-color: #e8f5e9;
+}
+
+tr:hover {
+    background-color: #c8e6c9; /* Highlights the row when hovered */
+}
