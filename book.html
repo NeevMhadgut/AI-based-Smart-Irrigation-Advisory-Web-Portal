@@ -3,29 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Irrigation Advisory - External CSS Test</title>
+    <title>Portal Modules Sidebar with Descriptions</title>
     
-    <!-- Linking the external CSS file -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            padding: 40px;
+        }
+
+        /* Expanded Sidebar to accommodate descriptions */
+        .sidebar-card {
+            background-color: #ffffff;
+            width: 420px; 
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-card h3 {
+            color: #1b5e20;
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e8f5e9;
+            padding-bottom: 12px;
+        }
+
+        .sidebar-card ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar-card li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar-card a {
+            display: block;
+            text-decoration: none;
+            padding: 15px; 
+            border-radius: 8px;
+            transition: background-color 0.2s, color 0.2s;
+            border: 1px solid transparent;
+        }
+
+        /* Module Title Styling */
+        .sidebar-card .module-title {
+            display: block;
+            color: #333333;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            transition: color 0.2s;
+        }
+
+        /* Module Description Styling */
+        .sidebar-card .module-desc {
+            display: block;
+            color: #666666;
+            font-size: 14px;
+            line-height: 1.4;
+            transition: color 0.2s;
+        }
+
+        /* Hover Effects */
+        .sidebar-card a:hover {
+            background-color: #2e7d32;
+            border-color: #1b5e20;
+        }
+
+        .sidebar-card a:hover .module-title,
+        .sidebar-card a:hover .module-desc {
+            color: #ffffff; /* Turns all text white on hover */
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <h1>Smart Irrigation Advisory System</h1>
-        <p>Smart Irrigation using AI & Sensor Technology</p>
-    </header>
-
-    <main>
-        <h2>About This Page</h2>
-        <p>This page demonstrates how external CSS controls the fonts, background colors, and heading colors site-wide without needing to write inline styles on every page.</p>
-        
-        <h3>Consistent Theming</h3>
-        <p>Notice how all headings share the same dark green color, and the background is a soft gray-green.</p>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 AI-based Smart Irrigation Advisory System. All rights reserved.</p>
-    </footer>
+    <aside class="sidebar-card">
+        <h3>Portal Modules</h3>
+        <ul>
+            <li>
+                <a href="irrigation-table.html">
+                    <span class="module-title">Irrigation Engineering</span>
+                    <span class="module-desc">View daily water requirements and automated irrigation schedules based on real-time data.</span>
+                </a>
+            </li>
+            <li>
+                <a href="farm-info.html">
+                    <span class="module-title">Soil Science & Moisture</span>
+                    <span class="module-desc">Monitor live soil moisture levels, soil types, and specific crop growth stages.</span>
+                </a>
+            </li>
+            <li>
+                <a href="media.html">
+                    <span class="module-title">AI in Agriculture</span>
+                    <span class="module-desc">Access multimedia training, video guides, and audio on smart water conservation.</span>
+                </a>
+            </li>
+            <li>
+                <a href="plot-map.html">
+                    <span class="module-title">Crop Management</span>
+                    <span class="module-desc">Navigate an interactive map of your farm plots to view localized status and alerts.</span>
+                </a>
+            </li>
+            <li>
+                <a href="weather.html">
+                    <span class="module-title">Weather Forecasting</span>
+                    <span class="module-desc">Check live meteorological data and regional climate predictions for your exact location.</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
 
 </body>
 </html>
