@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-up Offer - Smart Irrigation System</title>
+    <link rel="stylesheet" href="effects.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Farm Dashboard</h1>
+    <p>This text is sitting behind the pop-up overlay.</p>
+
+    <!-- The Pop-up Overlay Container -->
+    <div id="offerPopup" class="popup-overlay">
+        
+        <!-- The Glowing Offer Box -->
+        <div class="offer-box">
+            <!-- Close button -->
+            <span class="close-btn" onclick="document.getElementById('offerPopup').style.display='none'">&times;</span>
+            
+            <h2>Government Subsidy Alert!</h2>
+            <p>Get up to 60% off on Smart Moisture Sensors and Automated Valves.</p>
+            <p style="font-size: 18px; margin-top: 15px; font-weight: normal;">Offer valid until the end of the agricultural season.</p>
+            
+            <!-- NEW: Clickable button linking to the store/price list -->
+            <a href="irrigation-table.html" class="shop-btn">View Store & Claim Offer</a>
+        </div>
+        
+    </div>
+
+</body>
+</html>
