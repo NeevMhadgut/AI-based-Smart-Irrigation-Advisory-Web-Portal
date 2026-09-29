@@ -3,85 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmer Registration - Smart Irrigation System</title>
+    <title>Farmer Registration - Smart Irrigation</title>
+    
+    <!-- Linking the external form.css file -->
+    <link rel="stylesheet" href="form.css">
+    
+    <style>
+        body {
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Farmer Registration</h1>
-        <p>Smart Irrigation using AI & Sensor Technology</p>
+
+    <header style="text-align: center; margin-bottom: 20px;">
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="farm-info.html">Farm Information</a></li>
-                <li><a href="irrigation-table.html">Irrigation Table</a></li>
-                <li><a href="registration.html">Register</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+            <a href="index.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Home</a>
+            <a href="gallery.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Gallery</a>
+            <a href="irrigation-table.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Price List</a>
         </nav>
     </header>
+
     <main>
-        <h2>Register Your Farm</h2>
-        <form action="submit_registration.php" method="POST" enctype="multipart/form-data">
+        <form action="#" method="post">
             <fieldset>
-                <legend>Personal Information</legend>
+                <legend>Portal Registration</legend>
+                
                 <label for="fullName">Full Name:</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required autofocus>
-                <br><br>
-                <label for="mobile">Mobile Number:</label>
-                <input type="tel" id="mobile" name="mobile" placeholder="10-digit number" pattern="[0-9]{10}" required>
-                <br><br>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+
                 <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" placeholder="farmer@example.com" required>
-                <br><br>
-                <label for="village">Village:</label>
-                <input type="text" id="village" name="village" placeholder="Enter village name" required>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend>Farm & Crop Details</legend>
-                <label for="plotId">Plot ID:</label>
-                <input type="text" id="plotId" name="plotId" placeholder="e.g. PLT-405" required>
-                <br><br>
-                <label for="cropStage">Crop Stage:</label>
-                <select id="cropStage" name="cropStage" required>
-                    <option value="">Select Current Stage</option>
-                    <option value="Germination">Germination</option>
-                    <option value="Tillering">Tillering</option>
-                    <option value="Grand Growth">Grand Growth</option>
-                    <option value="Maturity">Maturity</option>
+                <input type="email" id="email" name="email" placeholder="example@farm.com" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required>
+
+                <label for="region">Farm Region:</label>
+                <select id="region" name="region">
+                    <option value="north">North Sector</option>
+                    <option value="south">South Sector</option>
+                    <option value="east">East Sector</option>
+                    <option value="west">West Sector</option>
                 </select>
-                <br><br>
-                <label for="soilType">Soil Type:</label>
-                <select id="soilType" name="soilType" required>
-                    <option value="">Select Soil Type</option>
-                    <option value="Clay">Clay</option>
-                    <option value="Sandy">Sandy</option>
-                    <option value="Loam">Loam</option>
-                    <option value="Silt">Silt</option>
-                </select>
-                <br><br>
-                <label>Irrigation Method:</label>
-                <input type="radio" id="drip" name="irrigationMethod" value="Drip" required>
-                <label for="drip">Drip</label>
-                <input type="radio" id="sprinkler" name="irrigationMethod" value="Sprinkler">
-                <label for="sprinkler">Sprinkler</label>
-                <input type="radio" id="flood" name="irrigationMethod" value="Flood">
-                <label for="flood">Flood</label>
-                <br><br>
-                <label for="regDate">Date of Registration:</label>
-                <input type="date" id="regDate" name="regDate" required>
-                <br><br>
-                <label for="farmPhoto">Upload Farm Photo:</label>
-                <input type="file" id="farmPhoto" name="farmPhoto" accept="image/*" required>
+
+                <input type="submit" value="Register Now">
             </fieldset>
-            <br>
-            <input type="submit" value="Submit Registration">
-            <input type="reset" value="Clear Form">
         </form>
     </main>
-    <hr>
-    <footer>
-        <p>&copy; 2026 AI-based Smart Irrigation Advisory System. All rights reserved.</p>
-    </footer>
+
 </body>
 </html>
