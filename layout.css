@@ -1,0 +1,52 @@
+/* Reset basic margins and set body to a Flex column */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the body takes up the full screen height */
+    background-color: #f4f7f6;
+}
+
+/* Header Layout */
+header {
+    background-color: #e8f5e9;
+    padding: 20px;
+    border-bottom: 3px solid #2e7d32;
+    text-align: center;
+}
+
+/* Container holding both Sidebar and Content */
+.main-wrapper {
+    display: flex;
+    flex: 1; /* Allows this wrapper to expand and push the footer to the bottom */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* Centers the layout on wide screens */
+}
+
+/* Sidebar Layout (Left side) */
+aside.sidebar {
+    width: 250px; /* Fixed width */
+    background-color: #ffffff;
+    padding: 20px;
+    border-right: 1px solid #dddddd;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+/* Main Content Layout (Right side) */
+main.content {
+    flex: 1; /* Takes up all remaining space to the right of the sidebar */
+    padding: 30px;
+    background-color: #f4f7f6;
+}
+
+/* Footer Layout (Bottom) */
+footer {
+    background-color: #2e7d32;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+}
