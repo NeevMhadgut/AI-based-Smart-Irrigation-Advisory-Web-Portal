@@ -52,7 +52,6 @@
             background-color: #616161;
         }
 
-        /* Task 2: Styling for the error messages beside/below inputs */
         .error-msg {
             color: #d32f2f;
             font-size: 13px;
@@ -85,10 +84,12 @@
                 <!-- 2. Mobile Number -->
                 <label for="mobileNumber">Mobile Number:</label>
                 <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="10-digit mobile number">
+                <span class="error-msg" id="mobileError"></span>
 
                 <!-- 3. Email -->
                 <label for="emailAddress">Email Address:</label>
-                <input type="email" id="emailAddress" name="emailAddress" placeholder="example@farm.com">
+                <input type="text" id="emailAddress" name="emailAddress" placeholder="example@farm.com">
+                <span class="error-msg" id="emailError"></span>
 
                 <!-- 4. Plot ID -->
                 <label for="plotId">Plot ID:</label>
@@ -148,27 +149,32 @@
         </form>
     </main>
 
-    <!-- Task 2: JavaScript Validation Logic -->
     <script>
         document.getElementById('farmerRegistrationForm').addEventListener('submit', function(event) {
             let isValid = true;
 
             // Retrieve and trim values
             const farmerName = document.getElementById('farmerName').value.trim();
+            const mobileNumber = document.getElementById('mobileNumber').value.trim();
+            const emailAddress = document.getElementById('emailAddress').value.trim();
             const plotId = document.getElementById('plotId').value.trim();
             const village = document.getElementById('village').value.trim();
 
             // Retrieve error message spans
             const nameError = document.getElementById('nameError');
+            const mobileError = document.getElementById('mobileError');
+            const emailError = document.getElementById('emailError');
             const plotError = document.getElementById('plotError');
             const villageError = document.getElementById('villageError');
 
             // Reset error messages on each submit attempt
             nameError.textContent = '';
+            mobileError.textContent = '';
+            emailError.textContent = '';
             plotError.textContent = '';
             villageError.textContent = '';
 
-            // 1. Validate Farmer Name (Not empty, letters and spaces only)
+            // Task 2: Validate Farmer Name (Not empty, letters and spaces only)
             const nameRegex = /^[A-Za-z\s]+$/;
             if (farmerName === '') {
                 nameError.textContent = 'Farmer Name is required.';
@@ -178,13 +184,33 @@
                 isValid = false;
             }
 
-            // 2. Validate Plot ID (Not empty)
+            // Task 3: Validate Mobile Number (10 digits, starts with 6-9 for India)
+            const mobileRegex = /^[6-9]\d{9}$/;
+            if (mobileNumber === '') {
+                mobileError.textContent = 'Mobile Number is required.';
+                isValid = false;
+            } else if (!mobileRegex.test(mobileNumber)) {
+                mobileError.textContent = 'Enter a valid 10-digit Indian mobile number (starting with 6-9).';
+                isValid = false;
+            }
+
+            // Task 3: Validate Email Address
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailAddress === '') {
+                emailError.textContent = 'Email Address is required.';
+                isValid = false;
+            } else if (!emailRegex.test(emailAddress)) {
+                emailError.textContent = 'Enter a valid email format (e.g., farmer@domain.com).';
+                isValid = false;
+            }
+
+            // Task 2: Validate Plot ID (Not empty)
             if (plotId === '') {
                 plotError.textContent = 'Plot ID is required.';
                 isValid = false;
             }
 
-            // 3. Validate Village (Not empty)
+            // Task 2: Validate Village (Not empty)
             if (village === '') {
                 villageError.textContent = 'Village is required.';
                 isValid = false;
