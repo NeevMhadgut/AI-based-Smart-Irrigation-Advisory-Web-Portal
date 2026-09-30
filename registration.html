@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprehensive Farmer Registration</title>
     
-    <!-- Linking your previously created form styling -->
     <link rel="stylesheet" href="form.css">
     
     <style>
-        /* Patching styles to support the newly introduced input types */
         body {
             background-color: #f4f7f6;
             margin: 0;
@@ -36,7 +34,6 @@
             box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
         }
 
-        /* Styling for the new Reset Button */
         input[type="reset"] {
             width: 100%;
             background-color: #757575;
@@ -54,6 +51,16 @@
         input[type="reset"]:hover {
             background-color: #616161;
         }
+
+        /* Task 2: Styling for the error messages beside/below inputs */
+        .error-msg {
+            color: #d32f2f;
+            font-size: 13px;
+            font-weight: bold;
+            display: block;
+            margin-top: -3px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -66,7 +73,6 @@
     </header>
 
     <main>
-        <!-- The form ID will be targeted by your JavaScript in the next task -->
         <form id="farmerRegistrationForm" action="#" method="post">
             <fieldset>
                 <legend>Farmer & Plot Registration</legend>
@@ -74,6 +80,7 @@
                 <!-- 1. Farmer Name -->
                 <label for="farmerName">Farmer Name:</label>
                 <input type="text" id="farmerName" name="farmerName" placeholder="Enter full name">
+                <span class="error-msg" id="nameError"></span>
 
                 <!-- 2. Mobile Number -->
                 <label for="mobileNumber">Mobile Number:</label>
@@ -86,10 +93,12 @@
                 <!-- 4. Plot ID -->
                 <label for="plotId">Plot ID:</label>
                 <input type="text" id="plotId" name="plotId" placeholder="e.g., PLOT-1234">
+                <span class="error-msg" id="plotError"></span>
 
                 <!-- 5. Village -->
                 <label for="village">Village:</label>
                 <input type="text" id="village" name="village" placeholder="Enter village name">
+                <span class="error-msg" id="villageError"></span>
 
                 <!-- 6. Crop Stage -->
                 <label for="cropStage">Crop Stage:</label>
@@ -133,12 +142,59 @@
                 <label for="farmPhoto">Upload Farm Photo:</label>
                 <input type="file" id="farmPhoto" name="farmPhoto" accept="image/*">
 
-                <!-- Form Controls -->
                 <input type="submit" value="Register Plot">
                 <input type="reset" value="Clear Form">
             </fieldset>
         </form>
     </main>
 
+    <!-- Task 2: JavaScript Validation Logic -->
+    <script>
+        document.getElementById('farmerRegistrationForm').addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // Retrieve and trim values
+            const farmerName = document.getElementById('farmerName').value.trim();
+            const plotId = document.getElementById('plotId').value.trim();
+            const village = document.getElementById('village').value.trim();
+
+            // Retrieve error message spans
+            const nameError = document.getElementById('nameError');
+            const plotError = document.getElementById('plotError');
+            const villageError = document.getElementById('villageError');
+
+            // Reset error messages on each submit attempt
+            nameError.textContent = '';
+            plotError.textContent = '';
+            villageError.textContent = '';
+
+            // 1. Validate Farmer Name (Not empty, letters and spaces only)
+            const nameRegex = /^[A-Za-z\s]+$/;
+            if (farmerName === '') {
+                nameError.textContent = 'Farmer Name is required.';
+                isValid = false;
+            } else if (!nameRegex.test(farmerName)) {
+                nameError.textContent = 'Farmer Name can only contain letters and spaces.';
+                isValid = false;
+            }
+
+            // 2. Validate Plot ID (Not empty)
+            if (plotId === '') {
+                plotError.textContent = 'Plot ID is required.';
+                isValid = false;
+            }
+
+            // 3. Validate Village (Not empty)
+            if (village === '') {
+                villageError.textContent = 'Village is required.';
+                isValid = false;
+            }
+
+            // Prevent form submission if any validation fails
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
