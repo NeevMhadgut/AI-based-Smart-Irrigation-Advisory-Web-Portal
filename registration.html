@@ -15,20 +15,23 @@
             font-family: Arial, sans-serif;
         }
         
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
         input[type="number"],
         input[type="date"],
-        input[type="file"] {
+        input[type="file"],
+        select {
             width: 100%;
             padding: 10px;
             border: 1px solid #cccccc;
             border-radius: 4px;
             box-sizing: border-box; 
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, background-color 0.3s;
         }
 
-        input[type="number"]:focus,
-        input[type="date"]:focus,
-        input[type="file"]:focus {
+        input:focus,
+        select:focus {
             border-color: #2e7d32;
             outline: none;
             box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
@@ -59,6 +62,12 @@
             display: block;
             margin-top: -3px;
             margin-bottom: 10px;
+        }
+
+        /* Task 4: CSS class to highlight fields when validation fails */
+        .invalid-field {
+            border-color: #d32f2f !important;
+            background-color: #ffebee !important;
         }
     </style>
 </head>
@@ -110,6 +119,7 @@
                     <option value="flowering">Flowering</option>
                     <option value="harvesting">Harvesting</option>
                 </select>
+                <span class="error-msg" id="cropError"></span>
 
                 <!-- 7. Soil Type -->
                 <label for="soilType">Soil Type:</label>
@@ -120,6 +130,7 @@
                     <option value="sandy">Sandy</option>
                     <option value="silt">Silt</option>
                 </select>
+                <span class="error-msg" id="soilError"></span>
 
                 <!-- 8. Irrigation Method -->
                 <label for="irrigationMethod">Irrigation Method:</label>
@@ -130,6 +141,7 @@
                     <option value="surface">Surface/Flood</option>
                     <option value="manual">Manual Watering</option>
                 </select>
+                <span class="error-msg" id="irrigationError"></span>
 
                 <!-- 9. Soil Moisture (%) -->
                 <label for="soilMoisture">Soil Moisture (%):</label>
@@ -138,82 +150,111 @@
                 <!-- 10. Registration Date -->
                 <label for="registrationDate">Registration Date:</label>
                 <input type="date" id="registrationDate" name="registrationDate">
+                <span class="error-msg" id="dateError"></span>
 
                 <!-- 11. Farm Photo -->
                 <label for="farmPhoto">Upload Farm Photo:</label>
                 <input type="file" id="farmPhoto" name="farmPhoto" accept="image/*">
 
                 <input type="submit" value="Register Plot">
-                <input type="reset" value="Clear Form">
+                <input type="reset" value="Clear Form" onclick="clearHighlights()">
             </fieldset>
         </form>
     </main>
 
     <script>
+        // Utility function to clear highlights when the reset button is clicked
+        function clearHighlights() {
+            const inputs = document.querySelectorAll('input, select');
+            inputs.forEach(input => input.classList.remove('invalid-field'));
+            
+            const errorMsgs = document.querySelectorAll('.error-msg');
+            errorMsgs.forEach(msg => msg.textContent = '');
+        }
+
         document.getElementById('farmerRegistrationForm').addEventListener('submit', function(event) {
             let isValid = true;
 
-            // Retrieve and trim values
-            const farmerName = document.getElementById('farmerName').value.trim();
-            const mobileNumber = document.getElementById('mobileNumber').value.trim();
-            const emailAddress = document.getElementById('emailAddress').value.trim();
-            const plotId = document.getElementById('plotId').value.trim();
-            const village = document.getElementById('village').value.trim();
+            // Retrieve DOM elements
+            const inputs = {
+                farmerName: document.getElementById('farmerName'),
+                mobileNumber: document.getElementById('mobileNumber'),
+                emailAddress: document.getElementById('emailAddress'),
+                plotId: document.getElementById('plotId'),
+                village: document.getElementById('village'),
+                cropStage: document.getElementById('cropStage'),
+                soilType: document.getElementById('soilType'),
+                irrigationMethod: document.getElementById('irrigationMethod'),
+                registrationDate: document.getElementById('registrationDate')
+            };
 
-            // Retrieve error message spans
-            const nameError = document.getElementById('nameError');
-            const mobileError = document.getElementById('mobileError');
-            const emailError = document.getElementById('emailError');
-            const plotError = document.getElementById('plotError');
-            const villageError = document.getElementById('villageError');
+            const errors = {
+                farmerName: document.getElementById('nameError'),
+                mobileNumber: document.getElementById('mobileError'),
+                emailAddress: document.getElementById('emailError'),
+                plotId: document.getElementById('plotError'),
+                village: document.getElementById('villageError'),
+                cropStage: document.getElementById('cropError'),
+                soilType: document.getElementById('soilError'),
+                irrigationMethod: document.getElementById('irrigationError'),
+                registrationDate: document.getElementById('dateError')
+            };
 
-            // Reset error messages on each submit attempt
-            nameError.textContent = '';
-            mobileError.textContent = '';
-            emailError.textContent = '';
-            plotError.textContent = '';
-            villageError.textContent = '';
+            // Reset all error messages and remove highlight classes
+            clearHighlights();
 
-            // Task 2: Validate Farmer Name (Not empty, letters and spaces only)
-            const nameRegex = /^[A-Za-z\s]+$/;
-            if (farmerName === '') {
-                nameError.textContent = 'Farmer Name is required.';
-                isValid = false;
-            } else if (!nameRegex.test(farmerName)) {
-                nameError.textContent = 'Farmer Name can only contain letters and spaces.';
+            // Helper function to mark a field as invalid
+            function markInvalid(fieldKey, message) {
+                errors[fieldKey].textContent = message;
+                inputs[fieldKey].classList.add('invalid-field'); // Highlights the specific input
                 isValid = false;
             }
 
-            // Task 3: Validate Mobile Number (10 digits, starts with 6-9 for India)
+            // Task 2: Validate Farmer Name
+            const nameRegex = /^[A-Za-z\s]+$/;
+            if (inputs.farmerName.value.trim() === '') {
+                markInvalid('farmerName', 'Farmer Name is required.');
+            } else if (!nameRegex.test(inputs.farmerName.value.trim())) {
+                markInvalid('farmerName', 'Farmer Name can only contain letters and spaces.');
+            }
+
+            // Task 3: Validate Mobile Number
             const mobileRegex = /^[6-9]\d{9}$/;
-            if (mobileNumber === '') {
-                mobileError.textContent = 'Mobile Number is required.';
-                isValid = false;
-            } else if (!mobileRegex.test(mobileNumber)) {
-                mobileError.textContent = 'Enter a valid 10-digit Indian mobile number (starting with 6-9).';
-                isValid = false;
+            if (inputs.mobileNumber.value.trim() === '') {
+                markInvalid('mobileNumber', 'Mobile Number is required.');
+            } else if (!mobileRegex.test(inputs.mobileNumber.value.trim())) {
+                markInvalid('mobileNumber', 'Enter a valid 10-digit Indian mobile number.');
             }
 
             // Task 3: Validate Email Address
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (emailAddress === '') {
-                emailError.textContent = 'Email Address is required.';
-                isValid = false;
-            } else if (!emailRegex.test(emailAddress)) {
-                emailError.textContent = 'Enter a valid email format (e.g., farmer@domain.com).';
-                isValid = false;
+            if (inputs.emailAddress.value.trim() === '') {
+                markInvalid('emailAddress', 'Email Address is required.');
+            } else if (!emailRegex.test(inputs.emailAddress.value.trim())) {
+                markInvalid('emailAddress', 'Enter a valid email format.');
             }
 
-            // Task 2: Validate Plot ID (Not empty)
-            if (plotId === '') {
-                plotError.textContent = 'Plot ID is required.';
-                isValid = false;
-            }
+            // Task 2: Validate Plot ID & Village
+            if (inputs.plotId.value.trim() === '') markInvalid('plotId', 'Plot ID is required.');
+            if (inputs.village.value.trim() === '') markInvalid('village', 'Village is required.');
 
-            // Task 2: Validate Village (Not empty)
-            if (village === '') {
-                villageError.textContent = 'Village is required.';
-                isValid = false;
+            // Task 4: Validate Select Fields (Crop Stage, Soil Type, Irrigation Method)
+            if (inputs.cropStage.value === '') markInvalid('cropStage', 'Please select a Crop Stage.');
+            if (inputs.soilType.value === '') markInvalid('soilType', 'Please select a Soil Type.');
+            if (inputs.irrigationMethod.value === '') markInvalid('irrigationMethod', 'Please select an Irrigation Method.');
+
+            // Task 4: Validate Registration Date (Not empty, not in the future)
+            const dateValue = inputs.registrationDate.value;
+            if (dateValue === '') {
+                markInvalid('registrationDate', 'Registration Date is required.');
+            } else {
+                const selectedDate = new Date(dateValue);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Strip time from today's date for accurate comparison
+
+                if (selectedDate > today) {
+                    markInvalid('registrationDate', 'Registration Date cannot be in the future.');
+                }
             }
 
             // Prevent form submission if any validation fails
