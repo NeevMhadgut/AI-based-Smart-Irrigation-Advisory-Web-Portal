@@ -6,6 +6,39 @@ body {
     text-align: center; /* Helps center the inline-block cards on the page */
 }
 
+section {
+    max-width: 900px;
+    margin: 0 auto 24px auto;
+    text-align: left;
+}
+
+article {
+    background-color: #ffffff;
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+}
+
+.how-it-works ol {
+    margin: 8px 0 0 20px;
+    line-height: 1.6;
+}
+
+aside {
+    max-width: 900px;
+    margin: 0 auto 24px auto;
+    background-color: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 16px 20px;
+    text-align: left;
+}
+
+footer {
+    margin-top: 20px;
+    color: #1b5e20;
+}
+
 /* Task 5: Book Card Layout using the Box Model */
 .book-card {
     display: inline-block;
