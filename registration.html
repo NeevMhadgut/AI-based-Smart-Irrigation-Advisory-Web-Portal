@@ -3,16 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmer Registration - Smart Irrigation</title>
+    <title>Comprehensive Farmer Registration</title>
     
-    <!-- Linking the external form.css file -->
+    <!-- Linking your previously created form styling -->
     <link rel="stylesheet" href="form.css">
     
     <style>
+        /* Patching styles to support the newly introduced input types */
         body {
             background-color: #f4f7f6;
             margin: 0;
             padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        
+        input[type="number"],
+        input[type="date"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box; 
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        input[type="file"]:focus {
+            border-color: #2e7d32;
+            outline: none;
+            box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+        }
+
+        /* Styling for the new Reset Button */
+        input[type="reset"] {
+            width: 100%;
+            background-color: #757575;
+            color: white;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="reset"]:hover {
+            background-color: #616161;
         }
     </style>
 </head>
@@ -21,34 +61,81 @@
     <header style="text-align: center; margin-bottom: 20px;">
         <nav>
             <a href="index.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Home</a>
-            <a href="gallery.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Gallery</a>
-            <a href="irrigation-table.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Price List</a>
+            <a href="dashboard.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Dashboard</a>
         </nav>
     </header>
 
     <main>
-        <form action="#" method="post">
+        <!-- The form ID will be targeted by your JavaScript in the next task -->
+        <form id="farmerRegistrationForm" action="#" method="post">
             <fieldset>
-                <legend>Portal Registration</legend>
+                <legend>Farmer & Plot Registration</legend>
                 
-                <label for="fullName">Full Name:</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                <!-- 1. Farmer Name -->
+                <label for="farmerName">Farmer Name:</label>
+                <input type="text" id="farmerName" name="farmerName" placeholder="Enter full name">
 
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" placeholder="example@farm.com" required>
+                <!-- 2. Mobile Number -->
+                <label for="mobileNumber">Mobile Number:</label>
+                <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="10-digit mobile number">
 
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required>
+                <!-- 3. Email -->
+                <label for="emailAddress">Email Address:</label>
+                <input type="email" id="emailAddress" name="emailAddress" placeholder="example@farm.com">
 
-                <label for="region">Farm Region:</label>
-                <select id="region" name="region">
-                    <option value="north">North Sector</option>
-                    <option value="south">South Sector</option>
-                    <option value="east">East Sector</option>
-                    <option value="west">West Sector</option>
+                <!-- 4. Plot ID -->
+                <label for="plotId">Plot ID:</label>
+                <input type="text" id="plotId" name="plotId" placeholder="e.g., PLOT-1234">
+
+                <!-- 5. Village -->
+                <label for="village">Village:</label>
+                <input type="text" id="village" name="village" placeholder="Enter village name">
+
+                <!-- 6. Crop Stage -->
+                <label for="cropStage">Crop Stage:</label>
+                <select id="cropStage" name="cropStage">
+                    <option value="">-- Select Stage --</option>
+                    <option value="seedling">Seedling</option>
+                    <option value="vegetative">Vegetative</option>
+                    <option value="flowering">Flowering</option>
+                    <option value="harvesting">Harvesting</option>
                 </select>
 
-                <input type="submit" value="Register Now">
+                <!-- 7. Soil Type -->
+                <label for="soilType">Soil Type:</label>
+                <select id="soilType" name="soilType">
+                    <option value="">-- Select Soil Type --</option>
+                    <option value="clay">Clay</option>
+                    <option value="loam">Loam</option>
+                    <option value="sandy">Sandy</option>
+                    <option value="silt">Silt</option>
+                </select>
+
+                <!-- 8. Irrigation Method -->
+                <label for="irrigationMethod">Irrigation Method:</label>
+                <select id="irrigationMethod" name="irrigationMethod">
+                    <option value="">-- Select Method --</option>
+                    <option value="drip">Drip Irrigation</option>
+                    <option value="sprinkler">Sprinkler System</option>
+                    <option value="surface">Surface/Flood</option>
+                    <option value="manual">Manual Watering</option>
+                </select>
+
+                <!-- 9. Soil Moisture (%) -->
+                <label for="soilMoisture">Soil Moisture (%):</label>
+                <input type="number" id="soilMoisture" name="soilMoisture" min="0" max="100" placeholder="e.g., 45">
+
+                <!-- 10. Registration Date -->
+                <label for="registrationDate">Registration Date:</label>
+                <input type="date" id="registrationDate" name="registrationDate">
+
+                <!-- 11. Farm Photo -->
+                <label for="farmPhoto">Upload Farm Photo:</label>
+                <input type="file" id="farmPhoto" name="farmPhoto" accept="image/*">
+
+                <!-- Form Controls -->
+                <input type="submit" value="Register Plot">
+                <input type="reset" value="Clear Form">
             </fieldset>
         </form>
     </main>
