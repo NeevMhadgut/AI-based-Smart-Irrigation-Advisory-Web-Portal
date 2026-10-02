@@ -1,4 +1,4 @@
-# AI-Based Smart Irrigation Advisory System 🌱
+# AI-Based Smart Irrigation Advisory System 
 
 ## Project Overview
 This project is a comprehensive front-end web portal designed to help farmers and agricultural officers optimize water usage. By simulating an AI-driven dashboard, the portal provides real-time soil moisture status, automated irrigation schedules, localized weather forecasting, and multimedia training resources. 
