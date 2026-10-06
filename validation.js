@@ -1,47 +1,71 @@
-document.getElementById('validationForm').addEventListener('submit', function(event) {
-    let isValid = true;
+function validateName(name) {
+    if (name === "") return "Farmer Name is required.";
+    if (!/^[A-Za-z\s]+$/.test(name)) return "Only alphabets and spaces allowed.";
+    return "";
+}
 
-    const farmerName = document.getElementById('farmerName');
-    const mobileNumber = document.getElementById('mobileNumber');
-    const plotId = document.getElementById('plotId');
+function validateMobile(mobile) {
+    if (mobile === "") return "Mobile Number is required.";
+    if (!/^\d{10}$/.test(mobile)) return "Must be exactly 10 digits.";
+    return "";
+}
 
-    const nameError = document.getElementById('nameError');
-    const mobileError = document.getElementById('mobileError');
-    const plotError = document.getElementById('plotError');
+function validatePlotId(plotId) {
+    if (plotId === "") return "Plot ID is required.";
+    if (!/^AGR-\d{4}$/.test(plotId)) return "Format must be AGR-1234.";
+    return "";
+}
 
-    farmerName.classList.remove('invalid-field');
-    mobileNumber.classList.remove('invalid-field');
-    plotId.classList.remove('invalid-field');
+function validateMoisture(moisture) {
+    if (moisture === "") return "Soil Moisture is required.";
+    let value = parseFloat(moisture);
+    if (value < 0 || value > 100) return "Must be between 0 and 100.";
+    return "";
+}
+
+function validateRequired(value, fieldName) {
+    if (value === "") return fieldName + " is required.";
+    return "";
+}
+
+function showError(inputId, errorId, message) {
+    const inputElement = document.getElementById(inputId);
+    const errorElement = document.getElementById(errorId);
     
-    nameError.textContent = '';
-    mobileError.textContent = '';
-    plotError.textContent = '';
-
-    const nameRegex = /^[A-Za-z\s]+$/;
-    if (!nameRegex.test(farmerName.value.trim())) {
-        nameError.textContent = 'Must contain only alphabets and spaces.';
-        farmerName.classList.add('invalid-field');
-        isValid = false;
-    }
-
-    const mobileRegex = /^\d{10}$/;
-    if (!mobileRegex.test(mobileNumber.value.trim())) {
-        mobileError.textContent = 'Must be exactly 10 digits.';
-        mobileNumber.classList.add('invalid-field');
-        isValid = false;
-    }
-
-    const plotRegex = /^AGR-\d{4}$/;
-    if (!plotRegex.test(plotId.value.trim())) {
-        plotError.textContent = 'Format must be AGR-1234.';
-        plotId.classList.add('invalid-field');
-        isValid = false;
-    }
-
-    if (!isValid) {
-        event.preventDefault();
+    if (message) {
+        inputElement.classList.add('invalid-field');
+        errorElement.textContent = message;
+        return false;
     } else {
-        event.preventDefault(); 
-        alert("Validation Successful! Data is ready for submission.");
+        inputElement.classList.remove('invalid-field');
+        errorElement.textContent = "";
+        return true;
+    }
+}
+
+document.getElementById('irrigationForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const nameVal = document.getElementById('farmerName').value.trim();
+    const mobileVal = document.getElementById('mobileNumber').value.trim();
+    const plotVal = document.getElementById('plotId').value.trim();
+    const moistureVal = document.getElementById('soilMoisture').value.trim();
+    const stageVal = document.getElementById('cropStage').value.trim();
+    const dateVal = document.getElementById('irrigationDate').value.trim();
+
+    const isNameValid = showError('farmerName', 'nameError', validateName(nameVal));
+    const isMobileValid = showError('mobileNumber', 'mobileError', validateMobile(mobileVal));
+    const isPlotValid = showError('plotId', 'plotError', validatePlotId(plotVal));
+    const isMoistureValid = showError('soilMoisture', 'moistureError', validateMoisture(moistureVal));
+    const isStageValid = showError('cropStage', 'stageError', validateRequired(stageVal, "Crop Stage"));
+    const isDateValid = showError('irrigationDate', 'dateError', validateRequired(dateVal, "Irrigation Date"));
+
+    if (isNameValid && isMobileValid && isPlotValid && isMoistureValid && isStageValid && isDateValid) {
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('irrigationForm').reset();
+        
+        setTimeout(() => {
+            document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
     }
 });
