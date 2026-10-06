@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strict Form Validation</title>
+    <style>
+        body {
+            background-color: #f4f7f6;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-bottom: 3px solid #2e7d32;
+            text-align: center;
+        }
+        
+        nav a {
+            margin: 0 15px;
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .dashboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .form-card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-top: 6px solid #2e7d32;
+            padding: 30px;
+        }
+
+        .form-card h2 {
+            color: #1b5e20;
+            margin-top: 0;
+            border-bottom: 2px solid #e8f5e9;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box; 
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #2e7d32;
+            outline: none;
+            box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #2e7d32;
+            color: white;
+            padding: 12px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1b5e20;
+        }
+
+        .error-msg {
+            color: #d32f2f;
+            font-size: 13px;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .invalid-field {
+            border-color: #d32f2f !important;
+            background-color: #ffebee !important;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 style="color: #1b5e20; margin: 0 0 10px 0;">Smart Irrigation System</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="registration.html">Register</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="form-card">
+            <h2>Farmer Validation</h2>
+            <form id="validationForm" action="#" method="post">
+                
+                <label for="farmerName">Farmer Name:</label>
+                <input type="text" id="farmerName" name="farmerName" placeholder="e.g., John Doe">
+                <span class="error-msg" id="nameError"></span>
+
+                <label for="mobileNumber">Mobile Number:</label>
+                <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="10 digits">
+                <span class="error-msg" id="mobileError"></span>
+
+                <label for="plotId">Plot ID:</label>
+                <input type="text" id="plotId" name="plotId" placeholder="AGR-1234">
+                <span class="error-msg" id="plotError"></span>
+
+                <input type="submit" value="Validate Data">
+            </form>
+        </div>
+    </div>
+
+    <script src="validation.js"></script>
+</body>
+</html>
