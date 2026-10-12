@@ -180,6 +180,66 @@
     </footer>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    document.getElementById('farmerRegistrationForm').addEventListener('submit', function(event) {
+        let isValid = true;
+
+        function showError(inputId, errorId, message) {
+            const inputElement = document.getElementById(inputId);
+            const errorElement = document.getElementById(errorId);
+            
+            if (message) {
+                inputElement.style.borderColor = "#d32f2f"; 
+                errorElement.textContent = message;
+                isValid = false;
+            } else {
+                inputElement.style.borderColor = "#cccccc"; 
+                errorElement.textContent = "";
+            }
+        }
+
+        const farmerName = document.getElementById('farmerName').value.trim();
+        const plotId = document.getElementById('plotId').value.trim();
+        const village = document.getElementById('village').value.trim();
+
+        const nameRegex = /^[A-Za-z\s]+$/;
+        if (farmerName === "") {
+            showError('farmerName', 'farmerNameError', 'Farmer Name is required.');
+        } else if (!nameRegex.test(farmerName)) {
+            showError('farmerName', 'farmerNameError', 'Only alphabetic characters and spaces are allowed.');
+        } else {
+            showError('farmerName', 'farmerNameError', '');
+        }
+
+        if (plotId === "") {
+            showError('plotId', 'plotIdError', 'Plot ID is required.');
+        } else {
+            showError('plotId', 'plotIdError', '');
+        }
+
+        if (village === "") {
+            showError('village', 'villageError', 'Village / Taluka is required.');
+        } else {
+            showError('village', 'villageError', '');
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+            document.getElementById('formSuccessMsg').style.display = "none";
+        } else {
+            event.preventDefault(); 
+            const successMsg = document.getElementById('formSuccessMsg');
+            successMsg.textContent = "Task 2 Validation Successful! Text fields are valid.";
+            successMsg.style.display = "block";
+            successMsg.style.padding = "15px";
+            successMsg.style.backgroundColor = "#e8f5e9";
+            successMsg.style.color = "#2e7d32";
+            successMsg.style.borderRadius = "6px";
+            successMsg.style.marginBottom = "20px";
+        }
+    });
+  </script>
+</body>
+</html>
 </body>
 </html>
