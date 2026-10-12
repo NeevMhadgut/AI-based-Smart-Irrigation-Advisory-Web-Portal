@@ -184,6 +184,7 @@
     document.getElementById('farmerRegistrationForm').addEventListener('submit', function(event) {
         let isValid = true;
 
+        // Helper function to display errors and highlight fields
         function showError(inputId, errorId, message) {
             const inputElement = document.getElementById(inputId);
             const errorElement = document.getElementById(errorId);
@@ -198,12 +199,18 @@
             }
         }
 
+        // Fetch values
         const farmerName = document.getElementById('farmerName').value.trim();
         const plotId = document.getElementById('plotId').value.trim();
         const village = document.getElementById('village').value.trim();
         const mobileNumber = document.getElementById('mobileNumber').value.trim();
         const email = document.getElementById('email').value.trim();
+        const cropStage = document.getElementById('cropStage').value;
+        const soilType = document.getElementById('soilType').value;
+        const irrigationMethod = document.getElementById('irrigationMethod').value;
+        const registrationDate = document.getElementById('registrationDate').value;
 
+        // Task 2: Validate Text Fields
         const nameRegex = /^[A-Za-z\s]+$/;
         if (farmerName === "") {
             showError('farmerName', 'farmerNameError', 'Farmer Name is required.');
@@ -225,6 +232,7 @@
             showError('village', 'villageError', '');
         }
 
+        // Task 3: Validate Contact Fields
         const mobileRegex = /^[6-9]\d{9}$/; 
         if (mobileNumber === "") {
             showError('mobileNumber', 'mobileNumberError', 'Mobile Number is required.');
@@ -243,13 +251,51 @@
             showError('email', 'emailError', '');
         }
 
+        // Task 4: Validate Selection Fields
+        if (cropStage === "") {
+            showError('cropStage', 'cropStageError', 'Please select a crop stage.');
+        } else {
+            showError('cropStage', 'cropStageError', '');
+        }
+
+        if (soilType === "") {
+            showError('soilType', 'soilTypeError', 'Please select a soil type.');
+        } else {
+            showError('soilType', 'soilTypeError', '');
+        }
+
+        if (irrigationMethod === "") {
+            showError('irrigationMethod', 'irrigationMethodError', 'Please select an irrigation method.');
+        } else {
+            showError('irrigationMethod', 'irrigationMethodError', '');
+        }
+
+        // Task 4: Validate Date Field (Not empty + No future dates)
+        if (registrationDate === "") {
+            showError('registrationDate', 'registrationDateError', 'Registration Date is required.');
+        } else {
+            // Get today's date and set the time to midnight for accurate comparison
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // Get the date selected by the user
+            const selectedDateObj = new Date(registrationDate);
+            selectedDateObj.setHours(0, 0, 0, 0);
+
+            if (selectedDateObj > today) {
+                showError('registrationDate', 'registrationDateError', 'Registration date cannot be in the future.');
+            } else {
+                showError('registrationDate', 'registrationDateError', '');
+            }
+        }
+
+        // Final Form Submission Check
         if (!isValid) {
             event.preventDefault();
             document.getElementById('formSuccessMsg').style.display = "none";
         } else {
-            event.preventDefault(); 
             const successMsg = document.getElementById('formSuccessMsg');
-            successMsg.textContent = "Registration Successful! All text and contact fields are valid.";
+            successMsg.textContent = "Registration Successful! All data has been validated.";
             successMsg.style.display = "block";
             successMsg.style.padding = "15px";
             successMsg.style.backgroundColor = "#e8f5e9";
