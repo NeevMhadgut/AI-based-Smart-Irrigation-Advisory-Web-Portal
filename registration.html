@@ -1,267 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprehensive Farmer Registration</title>
-    
-    <link rel="stylesheet" href="form.css">
-    
-    <style>
-        body {
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
-        
-        input[type="text"],
-        input[type="tel"],
-        input[type="email"],
-        input[type="number"],
-        input[type="date"],
-        input[type="file"],
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            box-sizing: border-box; 
-            transition: border-color 0.3s, background-color 0.3s;
-        }
-
-        input:focus,
-        select:focus {
-            border-color: #2e7d32;
-            outline: none;
-            box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
-        }
-
-        input[type="reset"] {
-            width: 100%;
-            background-color: #757575;
-            color: white;
-            padding: 12px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        input[type="reset"]:hover {
-            background-color: #616161;
-        }
-
-        .error-msg {
-            color: #d32f2f;
-            font-size: 13px;
-            font-weight: bold;
-            display: block;
-            margin-top: -3px;
-            margin-bottom: 10px;
-        }
-
-        /* Task 4: CSS class to highlight fields when validation fails */
-        .invalid-field {
-            border-color: #d32f2f !important;
-            background-color: #ffebee !important;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Registration - Smart Irrigation Advisory System</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="form.css">
 </head>
 <body>
-
-    <header style="text-align: center; margin-bottom: 20px;">
-        <nav>
-            <a href="index.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Home</a>
-            <a href="dashboard.html" style="margin: 0 10px; color: #2e7d32; text-decoration: none; font-weight: bold;">Dashboard</a>
-        </nav>
+  <div class="site-wrapper">
+    <header class="simple-card" id="home-header">
+      <p class="org-name">
+        <img class="logo" src="./images/image.png" alt="org logo">
+        Agricultural Advisory Organization
+      </p>
+      <h1 class="page-name">Smart Irrigation Advisory System</h1>
     </header>
 
+    <nav class="site-nav" aria-label="Main Navigation">
+      <ul class="nav-menu">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="irrigation-advisory.html">Irrigation Advisory</a></li>
+        <li class="nav-item"><a class="nav-link" href="about-system.html">About System</a></li>
+        <li class="nav-item"><a class="nav-link" href="farm-information.html">Farm Information</a></li>
+        <li class="nav-item"><a class="nav-link" href="farm-map.html">Interactive Map</a></li>
+        <li class="nav-item"><a class="nav-link" href="recommendation.html">Recommendations</a></li>
+        <li class="nav-item"><a class="nav-link active" href="registration.html">Farmer Registration</a></li>
+        <li class="nav-item"><a class="nav-link" href="media.html">Media & Awareness</a></li>
+        <li class="nav-item"><a class="nav-link" href="smart-advisory.html">Smart JS Engine</a></li>
+      </ul>
+    </nav>
+
     <main>
-        <form id="farmerRegistrationForm" action="#" method="post">
-            <fieldset>
-                <legend>Farmer & Plot Registration</legend>
-                
-                <!-- 1. Farmer Name -->
-                <label for="farmerName">Farmer Name:</label>
-                <input type="text" id="farmerName" name="farmerName" placeholder="Enter full name">
-                <span class="error-msg" id="nameError"></span>
+      <div class="form-card">
+        <p class="subtitle" style="font-size: 1.25rem; margin-bottom: 0.25rem;">Farmer Registration & Plot Onboarding</p>
+        <p class="tagline">Register your sugarcane farm to activate automated AI irrigation alerts and telemetry telemetry tracking.</p>
 
-                <!-- 2. Mobile Number -->
-                <label for="mobileNumber">Mobile Number:</label>
+        <!-- Success Notification Box -->
+        <div id="formSuccessMsg" class="alert-success" role="alert"></div>
+
+        <form id="farmerRegistrationForm" class="agri-form" novalidate>
+          
+          <!-- Fieldset 1: Farmer Personal & Contact Information -->
+          <fieldset>
+            <legend>Personal & Contact Details</legend>
+            <div class="form-grid">
+              
+              <div class="form-group">
+                <label for="farmerName">Farmer Name <span class="required-star">*</span></label>
+                <input type="text" id="farmerName" name="farmerName" placeholder="e.g. Ramesh Patil">
+                <span class="error-msg" id="farmerNameError"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="mobileNumber">Mobile Number <span class="required-star">*</span></label>
                 <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="10-digit mobile number">
-                <span class="error-msg" id="mobileError"></span>
+                <span class="error-msg" id="mobileNumberError"></span>
+              </div>
 
-                <!-- 3. Email -->
-                <label for="emailAddress">Email Address:</label>
-                <input type="text" id="emailAddress" name="emailAddress" placeholder="example@farm.com">
+              <div class="form-group">
+                <label for="email">Email Address <span class="required-star">*</span></label>
+                <input type="email" id="email" name="email" placeholder="e.g. farmer@example.com">
                 <span class="error-msg" id="emailError"></span>
+              </div>
 
-                <!-- 4. Plot ID -->
-                <label for="plotId">Plot ID:</label>
-                <input type="text" id="plotId" name="plotId" placeholder="e.g., PLOT-1234">
-                <span class="error-msg" id="plotError"></span>
-
-                <!-- 5. Village -->
-                <label for="village">Village:</label>
-                <input type="text" id="village" name="village" placeholder="Enter village name">
+              <div class="form-group">
+                <label for="village">Village / Taluka <span class="required-star">*</span></label>
+                <input type="text" id="village" name="village" placeholder="e.g. Baramati">
                 <span class="error-msg" id="villageError"></span>
+              </div>
 
-                <!-- 6. Crop Stage -->
-                <label for="cropStage">Crop Stage:</label>
+            </div>
+          </fieldset>
+
+          <!-- Fieldset 2: Farm & Soil Specifics -->
+          <fieldset>
+            <legend>Farm & Agronomic Details</legend>
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="plotId">Plot ID (Format: AGR-1234) <span class="required-star">*</span></label>
+                <input type="text" id="plotId" name="plotId" placeholder="e.g. AGR-1045">
+                <span class="error-msg" id="plotIdError"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="cropStage">Crop Stage <span class="required-star">*</span></label>
                 <select id="cropStage" name="cropStage">
-                    <option value="">-- Select Stage --</option>
-                    <option value="seedling">Seedling</option>
-                    <option value="vegetative">Vegetative</option>
-                    <option value="flowering">Flowering</option>
-                    <option value="harvesting">Harvesting</option>
+                  <option value="">-- Select Crop Stage --</option>
+                  <option value="Germination">Germination (0-30 Days)</option>
+                  <option value="Tillering">Tillering (31-120 Days)</option>
+                  <option value="Grand Growth">Grand Growth (121-250 Days)</option>
+                  <option value="Ripening">Ripening / Maturity (251-360 Days)</option>
                 </select>
-                <span class="error-msg" id="cropError"></span>
+                <span class="error-msg" id="cropStageError"></span>
+              </div>
 
-                <!-- 7. Soil Type -->
-                <label for="soilType">Soil Type:</label>
+              <div class="form-group">
+                <label for="soilType">Soil Type <span class="required-star">*</span></label>
                 <select id="soilType" name="soilType">
-                    <option value="">-- Select Soil Type --</option>
-                    <option value="clay">Clay</option>
-                    <option value="loam">Loam</option>
-                    <option value="sandy">Sandy</option>
-                    <option value="silt">Silt</option>
+                  <option value="">-- Select Soil Type --</option>
+                  <option value="Black Clay (Regur)">Black Clay (Regur)</option>
+                  <option value="Alluvial Loam">Alluvial Loam</option>
+                  <option value="Sandy Loam">Sandy Loam</option>
+                  <option value="Red Laterite">Red Laterite</option>
                 </select>
-                <span class="error-msg" id="soilError"></span>
+                <span class="error-msg" id="soilTypeError"></span>
+              </div>
 
-                <!-- 8. Irrigation Method -->
-                <label for="irrigationMethod">Irrigation Method:</label>
+              <div class="form-group">
+                <label for="irrigationMethod">Irrigation Method <span class="required-star">*</span></label>
                 <select id="irrigationMethod" name="irrigationMethod">
-                    <option value="">-- Select Method --</option>
-                    <option value="drip">Drip Irrigation</option>
-                    <option value="sprinkler">Sprinkler System</option>
-                    <option value="surface">Surface/Flood</option>
-                    <option value="manual">Manual Watering</option>
+                  <option value="">-- Select Irrigation Method --</option>
+                  <option value="Drip">Drip Irrigation (Recommended)</option>
+                  <option value="Sprinkler">Micro-Sprinkler</option>
+                  <option value="Furrow">Furrow Irrigation</option>
+                  <option value="Flood">Flood / Basin</option>
                 </select>
-                <span class="error-msg" id="irrigationError"></span>
+                <span class="error-msg" id="irrigationMethodError"></span>
+              </div>
 
-                <!-- 9. Soil Moisture (%) -->
-                <label for="soilMoisture">Soil Moisture (%):</label>
-                <input type="number" id="soilMoisture" name="soilMoisture" min="0" max="100" placeholder="e.g., 45">
+              <div class="form-group">
+                <label for="soilMoisture">Initial Soil Moisture (%) <span class="required-star">*</span></label>
+                <input type="number" id="soilMoisture" name="soilMoisture" min="0" max="100" step="0.1" placeholder="e.g. 28.5">
+                <span class="error-msg" id="soilMoistureError"></span>
+              </div>
 
-                <!-- 10. Registration Date -->
-                <label for="registrationDate">Registration Date:</label>
+              <div class="form-group">
+                <label for="registrationDate">Registration Date <span class="required-star">*</span></label>
                 <input type="date" id="registrationDate" name="registrationDate">
-                <span class="error-msg" id="dateError"></span>
+                <span class="error-msg" id="registrationDateError"></span>
+              </div>
 
-                <!-- 11. Farm Photo -->
-                <label for="farmPhoto">Upload Farm Photo:</label>
+              <div class="form-group full-width">
+                <label for="farmPhoto">Farm / Crop Plot Photo (Optional)</label>
                 <input type="file" id="farmPhoto" name="farmPhoto" accept="image/*">
+                <span class="error-msg" id="farmPhotoError"></span>
+              </div>
 
-                <input type="submit" value="Register Plot">
-                <input type="reset" value="Clear Form" onclick="clearHighlights()">
-            </fieldset>
+            </div>
+          </fieldset>
+
+          <!-- Fieldset 3: Preferences -->
+          <fieldset>
+            <legend>Preferences & Communication</legend>
+            <div style="margin-bottom: 1rem;">
+              <label style="font-weight: 600; display: block; margin-bottom: 0.35rem;">Preferred Advisory Language:</label>
+              <div class="options-row">
+                <label class="option-label"><input type="radio" name="preferredLanguage" value="Marathi" checked> Marathi (मराठी)</label>
+                <label class="option-label"><input type="radio" name="preferredLanguage" value="Hindi"> Hindi (हिंदी)</label>
+                <label class="option-label"><input type="radio" name="preferredLanguage" value="English"> English</label>
+              </div>
+            </div>
+
+            <div>
+              <label style="font-weight: 600; display: block; margin-bottom: 0.35rem;">Advisory Services Required:</label>
+              <div class="options-row">
+                <label class="option-label"><input type="checkbox" name="services" value="irrigation" checked> Daily Irrigation Timing</label>
+                <label class="option-label"><input type="checkbox" name="services" value="weather" checked> Weather & Rainfall Forecasts</label>
+                <label class="option-label"><input type="checkbox" name="services" value="soil"> Soil Nutrient & Health Reports</label>
+                <label class="option-label"><input type="checkbox" name="services" value="crop"> Harvest Timing Recommendations</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Form Buttons -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-submit">Submit Registration</button>
+            <button type="reset" class="btn btn-reset">Reset Form</button>
+          </div>
         </form>
+      </div>
     </main>
 
-    <script>
-        // Utility function to clear highlights when the reset button is clicked
-        function clearHighlights() {
-            const inputs = document.querySelectorAll('input, select');
-            inputs.forEach(input => input.classList.remove('invalid-field'));
-            
-            const errorMsgs = document.querySelectorAll('.error-msg');
-            errorMsgs.forEach(msg => msg.textContent = '');
-        }
+    <footer class="site-footer">
+      <p>Smart Irrigation Advisory System &bull; Sugarcane Crop (KJS-AGR-01)</p>
+      <p>Department of Computer Engineering &bull; K. J. Somaiya School of Engineering</p>
+    </footer>
+  </div>
 
-        document.getElementById('farmerRegistrationForm').addEventListener('submit', function(event) {
-            let isValid = true;
-
-            // Retrieve DOM elements
-            const inputs = {
-                farmerName: document.getElementById('farmerName'),
-                mobileNumber: document.getElementById('mobileNumber'),
-                emailAddress: document.getElementById('emailAddress'),
-                plotId: document.getElementById('plotId'),
-                village: document.getElementById('village'),
-                cropStage: document.getElementById('cropStage'),
-                soilType: document.getElementById('soilType'),
-                irrigationMethod: document.getElementById('irrigationMethod'),
-                registrationDate: document.getElementById('registrationDate')
-            };
-
-            const errors = {
-                farmerName: document.getElementById('nameError'),
-                mobileNumber: document.getElementById('mobileError'),
-                emailAddress: document.getElementById('emailError'),
-                plotId: document.getElementById('plotError'),
-                village: document.getElementById('villageError'),
-                cropStage: document.getElementById('cropError'),
-                soilType: document.getElementById('soilError'),
-                irrigationMethod: document.getElementById('irrigationError'),
-                registrationDate: document.getElementById('dateError')
-            };
-
-            // Reset all error messages and remove highlight classes
-            clearHighlights();
-
-            // Helper function to mark a field as invalid
-            function markInvalid(fieldKey, message) {
-                errors[fieldKey].textContent = message;
-                inputs[fieldKey].classList.add('invalid-field'); // Highlights the specific input
-                isValid = false;
-            }
-
-            // Task 2: Validate Farmer Name
-            const nameRegex = /^[A-Za-z\s]+$/;
-            if (inputs.farmerName.value.trim() === '') {
-                markInvalid('farmerName', 'Farmer Name is required.');
-            } else if (!nameRegex.test(inputs.farmerName.value.trim())) {
-                markInvalid('farmerName', 'Farmer Name can only contain letters and spaces.');
-            }
-
-            // Task 3: Validate Mobile Number
-            const mobileRegex = /^[6-9]\d{9}$/;
-            if (inputs.mobileNumber.value.trim() === '') {
-                markInvalid('mobileNumber', 'Mobile Number is required.');
-            } else if (!mobileRegex.test(inputs.mobileNumber.value.trim())) {
-                markInvalid('mobileNumber', 'Enter a valid 10-digit Indian mobile number.');
-            }
-
-            // Task 3: Validate Email Address
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (inputs.emailAddress.value.trim() === '') {
-                markInvalid('emailAddress', 'Email Address is required.');
-            } else if (!emailRegex.test(inputs.emailAddress.value.trim())) {
-                markInvalid('emailAddress', 'Enter a valid email format.');
-            }
-
-            // Task 2: Validate Plot ID & Village
-            if (inputs.plotId.value.trim() === '') markInvalid('plotId', 'Plot ID is required.');
-            if (inputs.village.value.trim() === '') markInvalid('village', 'Village is required.');
-
-            // Task 4: Validate Select Fields (Crop Stage, Soil Type, Irrigation Method)
-            if (inputs.cropStage.value === '') markInvalid('cropStage', 'Please select a Crop Stage.');
-            if (inputs.soilType.value === '') markInvalid('soilType', 'Please select a Soil Type.');
-            if (inputs.irrigationMethod.value === '') markInvalid('irrigationMethod', 'Please select an Irrigation Method.');
-
-            // Task 4: Validate Registration Date (Not empty, not in the future)
-            const dateValue = inputs.registrationDate.value;
-            if (dateValue === '') {
-                markInvalid('registrationDate', 'Registration Date is required.');
-            } else {
-                const selectedDate = new Date(dateValue);
-                const today = new Date();
-                today.setHours(0, 0, 0, 0); // Strip time from today's date for accurate comparison
-
-                if (selectedDate > today) {
-                    markInvalid('registrationDate', 'Registration Date cannot be in the future.');
-                }
-            }
-
-            // Prevent form submission if any validation fails
-            if (!isValid) {
-                event.preventDefault();
-            }
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>

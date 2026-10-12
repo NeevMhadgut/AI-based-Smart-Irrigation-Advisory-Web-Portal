@@ -1,52 +1,87 @@
-/* Reset basic margins and set body to a Flex column */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
+/* =========================================================
+   layout.css - Multi-Column Page Layout
+   Task 9 Requirements:
+   - Header at top
+   - Sidebar to left
+   - Content to right
+   - Footer at bottom
+   - Use: float or flex
+   - Set widths and spacing
+   ========================================================= */
+
+.site-wrapper {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+/* Page Header */
+.layout-header {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/* Two-column Container with Flexbox */
+.layout-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.75rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+/* Sidebar to Left (approx 28% width) */
+.layout-sidebar {
+  flex: 0 0 280px;
+  width: 280px;
+}
+
+/* Content to Right (flexible remaining width) */
+.layout-content {
+  flex: 1;
+  min-width: 0; /* Prevents overflow issues */
+}
+
+/* Alternative Float-based structure for compatibility demonstration */
+.float-layout-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.float-sidebar {
+  float: left;
+  width: 25%;
+  box-sizing: border-box;
+}
+
+.float-content {
+  float: right;
+  width: 73%;
+  box-sizing: border-box;
+}
+
+/* Footer at Bottom */
+.layout-footer {
+  width: 100%;
+  clear: both;
+}
+
+/* Responsive adjustments */
+@media (max-width: 860px) {
+  .layout-container {
     flex-direction: column;
-    min-height: 100vh; /* Ensures the body takes up the full screen height */
-    background-color: #f4f7f6;
-}
-
-/* Header Layout */
-header {
-    background-color: #e8f5e9;
-    padding: 20px;
-    border-bottom: 3px solid #2e7d32;
-    text-align: center;
-}
-
-/* Container holding both Sidebar and Content */
-.main-wrapper {
-    display: flex;
-    flex: 1; /* Allows this wrapper to expand and push the footer to the bottom */
+  }
+  .layout-sidebar {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto; /* Centers the layout on wide screens */
-}
-
-/* Sidebar Layout (Left side) */
-aside.sidebar {
-    width: 250px; /* Fixed width */
-    background-color: #ffffff;
-    padding: 20px;
-    border-right: 1px solid #dddddd;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-}
-
-/* Main Content Layout (Right side) */
-main.content {
-    flex: 1; /* Takes up all remaining space to the right of the sidebar */
-    padding: 30px;
-    background-color: #f4f7f6;
-}
-
-/* Footer Layout (Bottom) */
-footer {
-    background-color: #2e7d32;
-    color: #ffffff;
-    text-align: center;
-    padding: 15px;
+    flex: auto;
+  }
+  .layout-content {
     width: 100%;
+  }
+  .float-sidebar, .float-content {
+    float: none;
+    width: 100%;
+  }
 }
