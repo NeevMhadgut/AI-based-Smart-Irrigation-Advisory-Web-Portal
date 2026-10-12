@@ -201,6 +201,8 @@
         const farmerName = document.getElementById('farmerName').value.trim();
         const plotId = document.getElementById('plotId').value.trim();
         const village = document.getElementById('village').value.trim();
+        const mobileNumber = document.getElementById('mobileNumber').value.trim();
+        const email = document.getElementById('email').value.trim();
 
         const nameRegex = /^[A-Za-z\s]+$/;
         if (farmerName === "") {
@@ -223,13 +225,31 @@
             showError('village', 'villageError', '');
         }
 
+        const mobileRegex = /^[6-9]\d{9}$/; 
+        if (mobileNumber === "") {
+            showError('mobileNumber', 'mobileNumberError', 'Mobile Number is required.');
+        } else if (!mobileRegex.test(mobileNumber)) {
+            showError('mobileNumber', 'mobileNumberError', 'Enter a valid 10-digit Indian mobile number.');
+        } else {
+            showError('mobileNumber', 'mobileNumberError', '');
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email === "") {
+            showError('email', 'emailError', 'Email Address is required.');
+        } else if (!emailRegex.test(email)) {
+            showError('email', 'emailError', 'Enter a valid email address.');
+        } else {
+            showError('email', 'emailError', '');
+        }
+
         if (!isValid) {
             event.preventDefault();
             document.getElementById('formSuccessMsg').style.display = "none";
         } else {
             event.preventDefault(); 
             const successMsg = document.getElementById('formSuccessMsg');
-            successMsg.textContent = "Task 2 Validation Successful! Text fields are valid.";
+            successMsg.textContent = "Registration Successful! All text and contact fields are valid.";
             successMsg.style.display = "block";
             successMsg.style.padding = "15px";
             successMsg.style.backgroundColor = "#e8f5e9";
