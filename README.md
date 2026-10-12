@@ -1,45 +1,123 @@
-# AI-Based Smart Irrigation Advisory System 
+# AI-Based Smart Irrigation Advisory Web Portal
 
-## Project Overview
-This project is a comprehensive front-end web portal designed to help farmers and agricultural officers optimize water usage. By simulating an AI-driven dashboard, the portal provides real-time soil moisture status, automated irrigation schedules, localized weather forecasting, and multimedia training resources. 
+A responsive front-end web portal for smart irrigation planning and farm monitoring. The project simulates an AI-assisted advisory system for sugarcane cultivation, combining sensor-based soil moisture insights, crop-stage recommendations, weather awareness, registration workflows, and farmer education resources.
 
-This repository contains the front-end user interface developed using semantic **HTML5** and modern **CSS3** features, completing a series of web development lab experiments.
+## Overview
 
-## Features & Modules
-* **Centralized Farm Dashboard:** Built with CSS Flexbox for a responsive sidebar and main content layout.
-* **Interactive Training Resources:** Product-style "Book Cards" utilizing the CSS Box Model and drop shadows.
-* **Equipment Store & Price List:** Clean, zebra-striped HTML tables with collapsed borders for readability.
-* **Media & Awareness Center:** Embedded HTML5 `<audio>` and `<video>` elements for farmer education.
-* **Visual Image Gallery:** A uniform image grid using CSS `object-fit` and `transform: scale()` hover zoom effects.
-* **Registration Portal:** A styled HTML web form featuring accessible labels, fieldsets, and focus states.
-* **Animated Alerts:** A glowing, CSS keyframe-animated promotional pop-up box with z-index overlays.
+This repository contains a complete static web application built with HTML, CSS, and JavaScript. It is designed to help farmers, agronomists, and agricultural officers understand irrigation scheduling, crop conditions, and field recommendations through a clean dashboard experience.
+
+The portal includes multiple pages for:
+- irrigation advisory and monitoring
+- farm and sensor information
+- recommendation logic and crop status
+- farmer registration
+- media and awareness content
+- navigation and site information
+
+## Key Features
+
+- Smart irrigation dashboard for crop and field monitoring
+- Dynamic advisory panels for soil moisture and water requirement
+- Plot-wise irrigation recommendations and crop stage guidance
+- Agricultural registration and validation pages
+- Interactive map and farm information views
+- Media and awareness section with training content
+- Responsive layout built using modern CSS techniques
+- JavaScript-powered calculation and recommendation interactions
+
+## Project Pages
+
+The portal includes the following main pages:
+
+- `index.html` – landing page and dashboard overview
+- `about-system.html` – description of the advisory system
+- `advisory.html` – irrigation advisory content
+- `dashboard.html` – summary view and monitoring layout
+- `farm-information.html` – field and crop information
+- `farm-map.html` – plot/farm map interface
+- `recommendation.html` – irrigation suggestions and strategy
+- `registration.html` / `farmer-registration.html` – farmer onboarding forms
+- `media.html` – awareness and educational media section
+- `smart-advisory.html` – smart JavaScript-based advisory simulation
+- `weather.html` – weather-related information
+- `validation.html` – form validation and data checks
 
 ## Technologies Used
-* **HTML5:** Semantic structuring (header, main, aside, footer, nav, article).
-* **CSS3:** Inline, internal, and external stylesheets covering styling, Flexbox layout, Box Model, pseudo-classes (`:hover`, `:focus`, `nth-child`), and `@keyframes` animations.
-* **JavaScript:** Basic inline scripting for portal welcome alerts and pop-up dismissal.
+
+- HTML5 for page structure and semantic content
+- CSS3 for layouts, styling, cards, navigation, forms, and responsive design
+- JavaScript for client-side logic, validation, and advisory interactions
 
 ## Project Structure
+
 ```text
-/smart-irrigation-portal
-│
-├── index.html               # Main homepage
-├── dashboard.html           # Flexbox layout dashboard
-├── gallery.html             # Image gallery with CSS zoom effects
-├── book.html                # Training materials (CSS Box Model cards)
-├── irrigation-table.html    # Equipment price list (Styled Tables)
-├── registration.html        # User registration form
-├── weather.html             # Weather forecasting module
-├── media.html               # Audio/Video awareness page
-├── special-offer.html       # Animated glowing pop-up offer
-│
-├── css/                     # (Or keep in root folder)
-│   ├── style.css            # Global site theme
-│   ├── nav.css              # Navigation and Gallery grid styling
-│   ├── table.css            # Table zebra-striping rules
-│   ├── form.css             # Form UI styling
-│   ├── layout.css           # Flexbox layout rules
-│   └── effects.css          # Keyframe animations and pop-up overlays
-│
-├── images/                  # Contains all .jpg and .png assets
-└── media/                   # Contains .mp4 and .mp3 multimedia files
+AI-based-Smart-Irrigation-Advisory-Web-Portal/
+├── index.html
+├── about-system.html
+├── advisory.html
+├── dashboard.html
+├── farm-information.html
+├── farm-map.html
+├── farmer-registration.html
+├── gallery.html
+├── irrigation-advisory.html
+├── irrigation-status.html
+├── irrigation-table.html
+├── media.html
+├── navigation.html
+├── recommendation.html
+├── registration.html
+├── smart-advisory.html
+├── weather.html
+├── validation.html
+├── style.css
+├── layout.css
+├── nav.css
+├── table.css
+├── form.css
+├── effects.css
+├── script.js
+├── irrigation.js
+├── irrigation-recommendation.js
+├── sensor-data.js
+├── sugarcane-farm.js
+├── validation.js
+├── images/
+├── media/
+├── README.md
+└── TestFarmPhoto.jpg
+```
+
+## How to Run
+
+Since this is a static website, no build tools or installation steps are required.
+
+1. Clone the repository.
+2. Open `index.html` in a browser, or serve the project with any static file server.
+3. Navigate through the available pages using the main menu.
+
+Example:
+
+```bash
+git clone https://github.com/NeevMhadgut/AI-based-Smart-Irrigation-Advisory-Web-Portal.git
+cd AI-based-Smart-Irrigation-Advisory-Web-Portal
+python -m http.server 8000
+```
+
+Then open `http://localhost:8000` in your browser.
+
+## Use Case
+
+The portal demonstrates how a smart irrigation advisory system could support precision agriculture by:
+- monitoring soil moisture conditions
+- recommending irrigation actions based on crop stage
+- reducing water wastage through data-informed decisions
+- educating farmers through an intuitive interface
+
+## Author
+
+This project was developed as a front-end agricultural advisory portal for educational and demonstration purposes.
+
+## License
+
+This project is provided for academic and demonstration use. Please check repository ownership and usage requirements before reusing it in production or commercial applications.
